@@ -16,7 +16,7 @@ func init() {
 
 }
 
-func randString(size int) string {
+func RandString(size int) string {
 	bAlphabet := []byte(alphabet)
 	lenAlphabet := len(alphabet)
 
