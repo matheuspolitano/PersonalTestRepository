@@ -18,6 +18,29 @@ func (store *Store) GetUserId(id int) (*User, error) {
 	return user, nil
 }
 
+func (store *Store) ChangePassword(id int, newPassword string) error {
+	hashedPassword, err := utils.HashPassword(newPassword)
+	if err != nil {
+		return err
+	}
+
+	result := store.db.Model(&User{
+		UserID: id,
+	}).Updates(User{
+		HashPassword: hashedPassword,
+	})
+
+	if err = result.Error; err != nil {
+		return err
+	}
+
+	if result.RowsAffected == 0 {
+		return errors.New("row does not insert")
+	}
+
+	return nil
+}
+
 func (store *Store) CreateUser(firstName string, lastName string, email string, password string) (*User, error) {
 	hashedPassword, err := utils.HashPassword(password)
 	if err != nil {
