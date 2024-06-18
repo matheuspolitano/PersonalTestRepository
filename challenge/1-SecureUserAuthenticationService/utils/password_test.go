@@ -7,7 +7,7 @@ import (
 )
 
 func TestHashPassword(t *testing.T) {
-	password := randString(12)
+	password := RandString(12)
 	hashedPassword, err := HashPassword(password)
 	require.NoError(t, err)
 	require.NotEmpty(t, hashedPassword)

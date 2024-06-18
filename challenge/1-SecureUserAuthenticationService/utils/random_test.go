@@ -7,6 +7,6 @@ import (
 )
 
 func TestRandomTest(t *testing.T) {
-	testRand := randString(12)
+	testRand := RandString(12)
 	require.Len(t, []byte(testRand), 12)
 }
