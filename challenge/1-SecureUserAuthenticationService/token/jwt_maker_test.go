@@ -66,7 +66,7 @@ func TestCheckTokenExpired(t *testing.T) {
 	require.NotEmpty(t, payloadCreated)
 	require.NotEmpty(t, token)
 
-	time.Sleep(time.Microsecond * 10)
+	time.Sleep(time.Millisecond * 10)
 	_, err = maker.CheckToken(token)
 	require.Error(t, err, "error token is expired")
 
